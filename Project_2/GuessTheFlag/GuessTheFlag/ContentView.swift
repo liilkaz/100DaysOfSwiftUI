@@ -39,6 +39,10 @@ struct ContentView: View {
     @State private var score = 0
     @State private var numberOfQuestion = 0
     
+    @State private var tappedFlag: Int? = nil
+    
+    @State private var animationAmount = 0.0
+    
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
     
@@ -63,10 +67,15 @@ struct ContentView: View {
                     }
                     ForEach(0..<3) { number in
                         Button {
-                            flagTapped(number)
+                            withAnimation(.interpolatingSpring(stiffness: 5, damping: 5)) {
+                                flagTapped(number)
+                            }
                         } label: {
                             FlagImage(countrie: countries[number])
                         }
+                        .rotation3DEffect(.degrees(number == tappedFlag ? animationAmount : 0.0), axis: (x: 0, y: 1, z: 0))
+                        .opacity(number == tappedFlag ? 1.0 : opacityAnimation(number))
+                        .scaleEffect(opacityAnimation(number) == 1 ? 1 : 0.5)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -95,10 +104,24 @@ struct ContentView: View {
         }
     }
     
+    func noTapAnimationButton(_ number: Int) {
+        
+    }
+    
+    func opacityAnimation(_ number: Int) -> Double {
+        if number == correctAnswer || tappedFlag == nil {
+            return 1.0
+        } else {
+            return 0.25
+        }
+    }
+    
     func flagTapped(_ number: Int) {
+        tappedFlag = number
         if number == correctAnswer {
             scoreTitle = "Correct"
             score += 1
+            animationAmount += 360
         } else {
             scoreTitle = "Wrong! That’s the flag of \(countries[number])"
         }
@@ -107,6 +130,7 @@ struct ContentView: View {
     }
     
     func askQuestion() {
+        tappedFlag = nil
         if numberOfQuestion == 8 {
             scoreTitle = "Finish"
             showingScore = false
