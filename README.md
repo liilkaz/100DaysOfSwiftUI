@@ -15,3 +15,6 @@
 |Челлендж - [Multiplication Tables](https://github.com/liilkaz/100DaysOfSwiftUI/tree/main/MultiplicationTables)|35||
 |Проект 7 - [iExpense](https://github.com/liilkaz/100DaysOfSwiftUI/tree/main/iExpense)|36-38||
 |Проект 8 - [Moonshot](https://github.com/liilkaz/100DaysOfSwiftUI/tree/main/Moonshot)|39-42||
+|Проект 9 - [Drawing](https://github.com/liilkaz/100DaysOfSwiftUI/tree/main/Drawing)|43-46||
+|Челлендж - [Habit Tracking](https://github.com/liilkaz/100DaysOfSwiftUI/tree/main/HabitTrackingApp)|47||
+|Проект 10 - [Cupcake Corner](https://github.com/liilkaz/100DaysOfSwiftUI/tree/main/CupcakeCorner)|49-52||
